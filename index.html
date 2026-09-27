@@ -1,310 +1,478 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#06101d">
-  <meta name="robots" content="noindex,nofollow">
-  <meta property="og:title" content="Nithin & Kusuma — Wedding Reception">
-  <meta property="og:description" content="Join us in Charlotte on January 9, 2027.">
-  <meta property="og:image" content="assets/og-preview.jpg">
-  <title>Nithin & Kusuma — Wedding Reception</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050915">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="Nithin & Kusuma — Wedding Reception">
+<meta property="og:description" content="Join our celebration in Charlotte — January 9, 2027.">
+<meta property="og:image" content="assets/og-preview.jpg">
+<title>Nithin & Kusuma — Wedding Reception</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500;600&family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500;600&family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<style>
+:root{
+  --bg:#050915;
+  --bg2:#091427;
+  --gold:#efc98d;
+  --gold2:#ffe6b7;
+  --ivory:#fff4e3;
+  --rose:#d796aa;
+  --plum:#5f2648;
+  --muted:#c7bbc0;
+  --serif:"Bodoni Moda",Georgia,serif;
+  --sans:"Manrope",system-ui,sans-serif;
+  --script:"Parisienne",cursive;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:auto}
+body{margin:0;background:var(--bg);color:var(--ivory);font-family:var(--sans);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{cursor:pointer}
+::selection{background:#7c3456;color:white}
+
+#noise{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.035;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#ambient{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.46}
+
+.preloader{position:fixed;inset:0;z-index:9999;background:#030711;display:grid;place-items:center;align-content:center;gap:10px;transition:.7s ease}
+.preloader.hide{opacity:0;visibility:hidden}
+.preloader img{width:140px;filter:drop-shadow(0 0 24px rgba(239,201,141,.24))}
+.preloader span{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+
+.header{position:fixed;inset:0 0 auto;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:max(13px,env(safe-area-inset-top)) 14px 10px;pointer-events:none}
+.brand,.menu{pointer-events:auto}
+.brand{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(4,9,18,.35);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px)}
+.brand img{width:31px}
+.menu{height:42px;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:0 14px;background:rgba(4,9,18,.35);color:#fff;backdrop-filter:blur(14px);font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+
+.drawer{position:fixed;inset:0;z-index:130;background:rgba(2,7,17,.965);opacity:0;visibility:hidden;transition:.35s ease;display:grid;place-items:center}
+.drawer.open{opacity:1;visibility:visible}
+.drawer button{position:absolute;right:18px;top:18px;background:none;border:0;color:white;font-size:35px}
+.drawer nav{width:min(84vw,560px);display:grid}
+.drawer a{font-family:var(--serif);font-size:clamp(31px,8vw,52px);padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.drawer a small{font-family:var(--sans);font-size:9px;color:var(--gold);letter-spacing:.14em;margin-right:14px}
+
+.rail{position:fixed;right:9px;top:50%;transform:translateY(-50%);z-index:80;display:none;flex-direction:column;gap:10px}
+.rail i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.22);transition:.3s}
+.rail i.active{background:var(--gold);box-shadow:0 0 10px var(--gold);transform:scale(1.5)}
+
+.chapter{position:relative;height:148svh;z-index:1}
+.chapter .sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center;background:#030711}
+.chapter.long{height:178svh}
+.chapter.rsvp{height:auto;min-height:110svh}
+
+.full-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.art-vignette{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.03) 65%,rgba(0,0,0,.18))}
+.poster-stage{position:relative;z-index:3;width:min(88vw,470px);height:min(89svh,830px);display:grid;place-items:center;filter:drop-shadow(0 24px 60px rgba(0,0,0,.42))}
+.poster-stage img{width:100%;height:100%;object-fit:cover;border-radius:28px;border:1px solid rgba(239,201,141,.20)}
+.poster-blur{position:absolute;inset:-6%;z-index:0;background-size:cover;background-position:center;filter:blur(46px) brightness(.48) saturate(.78);transform:scale(1.08);opacity:.72}
+.poster-label{position:absolute;left:18px;bottom:18px;z-index:5;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.poster-label b{color:var(--gold);font-weight:500;margin-right:9px}
+
+#entrance .sticky,#connection .sticky{background:#020711}
+#entrance .full-art,#connection .full-art{object-position:center}
+#entrance .continue{position:absolute;inset:auto 0 0;z-index:7;height:22%}
+
+#connection .spark-layer{position:absolute;inset:0;z-index:5;pointer-events:none}
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffd992;box-shadow:0 0 10px #ffd992;opacity:0}
+
+#date .sticky,#city .sticky,#venue .sticky,#dress .sticky{background:radial-gradient(circle at 50% 30%,#0d1a2e,#030711 72%)}
+.dashboard-art{position:relative;z-index:5;width:min(88vw,510px);height:min(90svh,880px)}
+.dashboard-art img{width:100%;height:100%;object-fit:cover;border-radius:30px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.dashboard-art:after{content:"";position:absolute;inset:0;border-radius:30px;box-shadow:inset 0 0 0 1px rgba(239,201,141,.14);pointer-events:none}
+
+#city .sticky:before,#venue .sticky:before,#dress .sticky:before,#date .sticky:before{
+  content:"";position:absolute;inset:-12%;z-index:0;background-size:cover;background-position:center;filter:blur(42px) brightness(.42);opacity:.64;transform:scale(1.1)
+}
+#date .sticky:before{background-image:url('assets/date.webp')}
+#city .sticky:before{background-image:url('assets/city.webp')}
+#venue .sticky:before{background-image:url('assets/venue.webp')}
+#dress .sticky:before{background-image:url('assets/dress.webp')}
+
+.venue-hotspot{position:absolute;left:17%;top:43%;width:66%;height:10%;z-index:10;border-radius:10px}
+.venue-hotspot:focus{outline:2px solid var(--gold)}
+
+#countdown .sticky{background:#030711}
+.count-bg{position:absolute;inset:0;background:url('assets/countdown-live-bg.webp') center/cover;filter:saturate(.88)}
+.count-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,7,17,.58),rgba(2,7,17,.76))}
+.count-shell{position:relative;z-index:5;text-align:center;width:min(88vw,480px)}
+.eyebrow{font-size:10px;letter-spacing:.29em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.display{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
+.count-shell h2{font-size:clamp(45px,11vw,72px);line-height:.9;margin:9px 0 26px}
+.orbit{width:min(83vw,390px);aspect-ratio:1;margin:auto;position:relative;border:1px solid rgba(239,201,141,.42);border-radius:50%;display:grid;place-items:center}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(239,201,141,.18);border-radius:50%}
+.orbit:before{inset:11%;transform:rotate(20deg)}
+.orbit:after{inset:24%;transform:rotate(-26deg)}
+.moon{position:absolute;top:4%;left:50%;transform:translateX(-50%);font-size:40px;color:#ffe1ae;filter:drop-shadow(0 0 14px rgba(239,201,141,.42))}
+.big-count{margin-top:-12px}
+.big-count b{display:block;font-family:var(--serif);font-weight:400;font-size:100px;line-height:.74}
+.big-count span,.small-count span{text-transform:uppercase;font-size:8px;letter-spacing:.16em;color:#c8bbc0}
+.small-count{position:absolute;left:13%;right:13%;bottom:13%;display:grid;grid-template-columns:repeat(3,1fr)}
+.small-count b{display:block;font-family:var(--serif);font-size:28px;font-weight:400}
+.count-meta{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#c0b4b9;margin-top:23px}
+
+#rsvp{position:relative;z-index:2;min-height:112svh;background:radial-gradient(circle at 50% 0,#11233f 0,#06101d 40%,#030711 100%);padding:92px 18px 90px}
+.rsvp-inner{width:min(100%,640px);margin:auto;position:relative;z-index:5}
+.rsvp-title{text-align:center}
+.rsvp-title h2{font-size:clamp(45px,11vw,72px);line-height:.92;margin:8px 0 18px}
+.rsvp-title p{font-family:var(--serif);font-size:19px;color:#d8cad0}
+.progress{display:flex;gap:8px;margin:25px 0 38px}
+.progress i{height:2px;flex:1;background:rgba(239,201,141,.14);transition:.3s}
+.progress i.on{background:var(--gold)}
+.step{display:none}
+.step.active{display:block}
+.question{font-family:var(--serif);font-size:clamp(35px,8vw,52px);line-height:1;margin:0 0 24px}
+.choice{width:100%;min-height:60px;border:1px solid rgba(239,201,141,.32);background:rgba(5,12,23,.67);color:white;border-radius:12px;padding:0 17px;display:flex;align-items:center;gap:13px;margin:10px 0;text-align:left}
+.choice span{width:27px;height:27px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold)}
+.choice:hover{border-color:var(--gold);background:rgba(60,30,49,.55)}
+.field{display:grid;gap:8px;margin:14px 0}
+.field span{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
+.field input{width:100%;height:54px;border:1px solid rgba(239,201,141,.27);border-radius:8px;background:rgba(4,10,20,.66);color:white;padding:0 14px;outline:none}
+.field input:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(239,201,141,.07)}
+.counters{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.counter{border:1px solid rgba(239,201,141,.27);background:rgba(4,10,20,.62);border-radius:12px;padding:15px}
+.counter>span{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.counter div{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.counter button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(239,201,141,.3);background:transparent;color:white;font-size:21px}
+.counter output{font-family:var(--serif);font-size:29px}
+.note{font-size:11px;color:#a99da2;margin:12px 0 0}
+.actions{display:flex;gap:10px;margin-top:23px}
+.actions>*{flex:1;height:50px;border-radius:8px;text-transform:uppercase;font-size:9px;letter-spacing:.11em}
+.back{border:1px solid rgba(239,201,141,.28);background:transparent;color:white}
+.next,.submit{border:0;background:linear-gradient(90deg,#e7b574,#f6d29a);color:#1c1014;font-weight:600}
+.error{color:#eaa0b6;font-size:12px;min-height:18px}
+.review{border:1px solid rgba(239,201,141,.27);background:rgba(4,10,20,.62);border-radius:12px;padding:15px}
+.review div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}
+.review div:last-child{border:0}
+.review span{color:#a99da2}.review strong{text-align:right;font-weight:500}
+.confirm{text-align:center;padding:18px 0}
+.confirm-mark{width:67px;height:67px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;color:var(--gold);font-size:28px}
+.confirm h3{font-family:var(--serif);font-size:48px;font-weight:400;margin:0 0 10px}
+.confirm p{color:#c8bbc0}
+.confirm-links{display:flex;gap:10px;justify-content:center;margin-top:22px}
+.confirm-links a,.confirm-links button{height:46px;padding:0 17px;border-radius:8px;border:1px solid rgba(239,201,141,.28);background:transparent;color:white;display:flex;align-items:center;justify-content:center}
+
+footer{position:relative;z-index:2;text-align:center;background:#020711;border-top:1px solid rgba(255,255,255,.05);padding:60px 20px 85px}
+footer img{width:100px}
+footer p{font-family:var(--serif);font-size:23px;margin:8px 0}
+footer span,footer small{display:block;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#998d92;margin-top:7px}
+footer small{color:var(--gold);margin-top:15px}
+
+@media(min-width:760px){
+  .rail{display:flex}
+  #entrance .full-art,#connection .full-art{width:min(540px,42vw);left:50%;transform:translateX(-50%);box-shadow:0 0 80px rgba(0,0,0,.48)}
+  .dashboard-art{width:min(430px,36vw);height:min(90svh,860px)}
+  .poster-stage{width:min(430px,36vw)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
 </head>
 <body>
-  <div id="preloader" aria-hidden="true">
-    <img src="assets/nk-logo.png" alt="">
-    <span>PremathoNIKU</span>
-  </div>
+<div id="noise"></div>
+<canvas id="ambient" aria-hidden="true"></canvas>
 
-  <canvas id="stars" aria-hidden="true"></canvas>
+<div class="preloader" id="preloader">
+  <img src="assets/nk-logo.png" alt="">
+  <span>#PremathoNIKU</span>
+</div>
 
-  <header class="site-header">
-    <a class="mini-brand" href="#entrance" aria-label="Back to top">
-      <img src="assets/nk-logo.png" alt="">
-    </a>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteMenu">
-      <span></span><span></span>
-      <em>Menu</em>
-    </button>
-  </header>
+<header class="header">
+  <a class="brand" href="#entrance" aria-label="Back to top"><img src="assets/nk-logo.png" alt=""></a>
+  <button class="menu" id="menuBtn">Menu</button>
+</header>
 
-  <nav class="site-menu" id="siteMenu" aria-hidden="true">
-    <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
-    <div class="menu-inner">
-      <p class="eyebrow">Nithin & Kusuma</p>
-      <a href="#entrance"><b>01</b> Entrance</a>
-      <a href="#connection"><b>02</b> Our Story</a>
-      <a href="#date"><b>03</b> The Date</a>
-      <a href="#city"><b>04</b> Charlotte</a>
-      <a href="#venue"><b>05</b> The Venue</a>
-      <a href="#dress"><b>06</b> Dress Code</a>
-      <a href="#countdown"><b>07</b> Countdown</a>
-      <a href="#rsvp"><b>08</b> RSVP</a>
-    </div>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button id="menuClose" aria-label="Close menu">×</button>
+  <nav>
+    <a href="#entrance"><small>01</small>Entrance</a>
+    <a href="#connection"><small>02</small>Our Story</a>
+    <a href="#date"><small>03</small>The Date</a>
+    <a href="#city"><small>04</small>Charlotte</a>
+    <a href="#venue"><small>05</small>The Venue</a>
+    <a href="#dress"><small>06</small>Dress Code</a>
+    <a href="#countdown"><small>07</small>Countdown</a>
+    <a href="#rsvp"><small>08</small>RSVP</a>
   </nav>
+</div>
 
-  <aside class="progress-rail" aria-hidden="true">
-    <span class="active">01</span><span>02</span><span>03</span><span>04</span>
-    <span>05</span><span>06</span><span>07</span><span>08</span>
-  </aside>
+<aside class="rail" aria-hidden="true">
+  <i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+</aside>
 
-  <main>
-    <!-- 01: exact approved artwork -->
-    <section class="poster-section" id="entrance" data-index="0">
-      <div class="poster-blur" style="background-image:url('assets/hero.webp')"></div>
-      <img class="poster-art" src="assets/hero.webp"
-           alt="Nithin and Kusuma wedding reception invitation under a constellation-filled night sky"
-           fetchpriority="high">
-      <a href="#connection" class="scroll-hit" aria-label="Continue to our story"></a>
-    </section>
+<main>
+  <section class="chapter long" id="entrance" data-index="0">
+    <div class="sticky">
+      <img class="full-art entrance-art" src="assets/hero.webp" alt="Join our celebration — Nithin and Kusuma">
+      <div class="art-vignette"></div>
+      <a class="continue" href="#connection" aria-label="Continue"></a>
+    </div>
+  </section>
 
-    <!-- 02: exact approved connection artwork -->
-    <section class="poster-section" id="connection" data-index="1">
-      <div class="poster-blur" style="background-image:url('assets/connection.webp')"></div>
-      <img class="poster-art" src="assets/connection.webp"
-           alt="Under the Same Sky — Somehow, our paths found their way to each other.">
-    </section>
+  <section class="chapter long" id="connection" data-index="1">
+    <div class="sticky">
+      <img class="full-art connection-art" src="assets/connection.webp" alt="Under the Same Sky — Somehow, our paths found their way to each other.">
+      <div class="art-vignette"></div>
+      <div class="spark-layer" id="sparkLayer" aria-hidden="true"></div>
+    </div>
+  </section>
 
-    <!-- 03 -->
-    <section class="scene date-scene" id="date" data-index="2">
-      <div class="scene-bg image-bg" style="background-image:url('assets/date-bg.webp')"></div>
-      <div class="veil"></div>
-      <div class="floating-constellations" aria-hidden="true">
-        <svg viewBox="0 0 900 700">
-          <g class="const">
-            <path d="M90 165 150 115 220 170 290 125 362 188"/>
-            <path d="M565 140 620 105 680 158 743 120 815 174"/>
-            <circle cx="90" cy="165" r="5"/><circle cx="150" cy="115" r="4"/><circle cx="220" cy="170" r="6"/>
-            <circle cx="290" cy="125" r="4"/><circle cx="362" cy="188" r="5"/>
-            <circle cx="565" cy="140" r="4"/><circle cx="620" cy="105" r="6"/><circle cx="680" cy="158" r="4"/>
-            <circle cx="743" cy="120" r="5"/><circle cx="815" cy="174" r="4"/>
-          </g>
-        </svg>
+  <section class="chapter" id="date" data-index="2">
+    <div class="sticky">
+      <div class="dashboard-art"><img src="assets/date.webp" alt="Saturday January 9 2027 at 7:00 PM. Dinner follows."></div>
+      <div class="poster-label"><b>03</b>The Date</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="city" data-index="3">
+    <div class="sticky">
+      <div class="dashboard-art"><img src="assets/city.webp" alt="Charlotte, North Carolina"></div>
+      <div class="poster-label"><b>04</b>The Queen City</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="venue" data-index="4">
+    <div class="sticky">
+      <div class="dashboard-art venue-art">
+        <img src="assets/venue.webp" alt="Utsav Event Spaces — 5533 Westpark Dr, Charlotte, NC 28217">
+        <a class="venue-hotspot" aria-label="Open Utsav Event Spaces in Google Maps"
+           target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217"></a>
       </div>
+      <div class="poster-label"><b>05</b>The Venue</div>
+    </div>
+  </section>
 
-      <div class="scene-content center date-content reveal">
-        <p class="eyebrow">Our Wedding Reception</p>
-        <div class="ornament"></div>
-        <p class="date-day">Saturday</p>
-        <h2 class="display date-title"><span>January</span><strong>9</strong><span>2027</span></h2>
-        <div class="date-time">7:00 PM</div>
-        <div class="ornament small"></div>
-        <p class="dinner">Dinner follows</p>
-      </div>
-    </section>
+  <section class="chapter" id="dress" data-index="5">
+    <div class="sticky">
+      <div class="dashboard-art"><img src="assets/dress.webp" alt="Festive Attire — Indian or Western festive"></div>
+      <div class="poster-label"><b>06</b>Dress Code</div>
+    </div>
+  </section>
 
-    <!-- 04 -->
-    <section class="scene city-scene" id="city" data-index="3">
-      <div class="scene-bg image-bg city-bg" style="background-image:url('assets/charlotte.webp')"></div>
-      <div class="city-overlay"></div>
-      <div class="scene-content city-copy reveal">
-        <p class="eyebrow">The Queen City</p>
-        <h2 class="display city-title">Charlotte</h2>
-        <p class="city-state">North Carolina</p>
-        <p class="script city-line">A special evening in the Queen City.</p>
-      </div>
-      <div class="city-light-line" aria-hidden="true"></div>
-    </section>
-
-    <!-- 05 -->
-    <section class="scene venue-scene" id="venue" data-index="4">
-      <div class="scene-bg image-bg" style="background-image:url('assets/venue.webp')"></div>
-      <div class="venue-overlay"></div>
-      <div class="scene-content venue-card reveal">
-        <p class="eyebrow">The Venue</p>
-        <div class="ornament"></div>
-        <h2 class="display venue-name">Utsav<br>Event Spaces</h2>
-        <p class="address">5533 Westpark Dr<br>Charlotte, NC 28217</p>
-        <a class="gold-btn" target="_blank" rel="noopener"
-           href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217">
-          <span>View on Google Maps</span><b>↗</b>
-        </a>
-        <div class="event-mini">
-          <span>Saturday · January 9, 2027</span>
-          <span>7:00 PM · Dinner follows</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 -->
-    <section class="scene dress-scene" id="dress" data-index="5">
-      <div class="dress-sky"></div>
-      <div class="scene-content dress-content reveal">
-        <p class="eyebrow">Dress Code</p>
-        <div class="ornament"></div>
-        <h2 class="display">Festive Attire</h2>
-        <p class="dress-intro">Come dressed to celebrate in your elegant festive best.</p>
-
-        <div class="outfit-stage" aria-label="Indian or Western festive attire inspiration">
-          <article class="outfit-card indian">
-            <div class="gold-arch"></div>
-            <div class="figure figure-indian" aria-hidden="true">
-              <span class="head"></span><span class="body"></span><span class="coat"></span>
-            </div>
-            <h3>Indian Festive</h3>
-            <p>Sarees · Lehengas · Kurtas · Bandhgalas</p>
-          </article>
-
-          <article class="outfit-card western">
-            <div class="gold-arch"></div>
-            <div class="figure figure-western" aria-hidden="true">
-              <span class="head"></span><span class="body"></span><span class="gown"></span>
-            </div>
-            <h3>Western Festive</h3>
-            <p>Suits · Blazers · Cocktail & Evening Looks</p>
-          </article>
-        </div>
-
-        <p class="dress-note">No required color palette — simply come ready to celebrate.</p>
-      </div>
-    </section>
-
-    <!-- 07 -->
-    <section class="scene count-scene" id="countdown" data-index="6">
-      <div class="scene-bg image-bg" style="background-image:url('assets/date-bg.webp')"></div>
-      <div class="veil strong"></div>
-      <div class="scene-content center reveal">
+  <section class="chapter" id="countdown" data-index="6">
+    <div class="sticky">
+      <div class="count-bg"></div>
+      <div class="count-veil"></div>
+      <div class="count-shell">
         <p class="eyebrow">Countdown to</p>
-        <h2 class="display count-heading">Our Celebration</h2>
-
-        <div class="celestial-clock">
-          <div class="orbit o1"></div>
-          <div class="orbit o2"></div>
-          <div class="moon-mark">☾</div>
-          <div class="count-main">
-            <strong id="days">000</strong>
-            <span>Days</span>
-          </div>
-          <div class="count-small">
+        <h2 class="display">Our Celebration</h2>
+        <div class="orbit">
+          <div class="moon">☾</div>
+          <div class="big-count"><b id="days">000</b><span>Days</span></div>
+          <div class="small-count">
             <div><b id="hours">00</b><span>Hours</span></div>
             <div><b id="minutes">00</b><span>Minutes</span></div>
             <div><b id="seconds">00</b><span>Seconds</span></div>
           </div>
         </div>
-
-        <p class="count-date">January 9, 2027 · 7:00 PM · Charlotte</p>
+        <div class="count-meta">January 9, 2027 · 7:00 PM · Charlotte</div>
       </div>
-    </section>
+      <div class="poster-label"><b>07</b>Countdown</div>
+    </div>
+  </section>
 
-    <!-- 08 -->
-    <section class="scene rsvp-scene" id="rsvp" data-index="7">
-      <div class="rsvp-stars"></div>
-      <div class="scene-content rsvp-wrap reveal">
-        <div class="rsvp-heading center">
-          <p class="eyebrow">RSVP</p>
-          <h2 class="display">We would love to<br>celebrate with you.</h2>
+  <section class="chapter rsvp" id="rsvp" data-index="7">
+    <div class="rsvp-inner">
+      <div class="rsvp-title">
+        <p class="eyebrow">RSVP</p>
+        <h2 class="display">We would love to<br>celebrate with you.</h2>
+        <p>Please let us know if you’ll be joining us in Charlotte.</p>
+      </div>
+
+      <div class="progress"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+
+      <form id="rsvpForm" novalidate>
+        <div class="step active" data-step="attendance">
+          <p class="question">Will you be attending?</p>
+          <button type="button" class="choice" data-attend="yes"><span>✓</span><b>Yes, I’ll be there</b></button>
+          <button type="button" class="choice" data-attend="no"><span>×</span><b>I’m not attending</b></button>
         </div>
 
-        <div class="rsvp-progress" aria-hidden="true">
-          <i class="on"></i><i></i><i></i><i></i><i></i>
+        <div class="step" data-step="name">
+          <p class="question">Who should we add to the guest list?</p>
+          <label class="field"><span>Guest Name</span><input id="guestName" autocomplete="name" placeholder="Your full name"></label>
+          <p class="error" id="nameError"></p>
+          <div class="actions"><button type="button" class="back" data-back="attendance">Back</button><button type="button" class="next" data-next="party">Continue</button></div>
         </div>
 
-        <form id="rsvpForm" novalidate>
-          <div class="step active" data-step="attendance">
-            <p class="question">Will you be attending?</p>
-            <div class="choice-stack">
-              <button type="button" class="choice yes" data-attend="yes">
-                <span>✓</span><b>Yes, I’ll be there</b>
-              </button>
-              <button type="button" class="choice no" data-attend="no">
-                <span>×</span><b>I’m not attending</b>
-              </button>
+        <div class="step" data-step="party">
+          <p class="question">Who’s celebrating with you?</p>
+          <div class="counters">
+            <div class="counter"><span>Adults</span><div><button type="button" data-count="adults" data-dir="-1">−</button><output id="adults">1</output><button type="button" data-count="adults" data-dir="1">+</button></div></div>
+            <div class="counter"><span>Children</span><div><button type="button" data-count="children" data-dir="-1">−</button><output id="children">0</output><button type="button" data-count="children" data-dir="1">+</button></div></div>
+          </div>
+          <p class="note">Families, children and +1s are welcome.</p>
+          <div class="actions"><button type="button" class="back" data-back="name">Back</button><button type="button" class="next" data-next="contact">Continue</button></div>
+        </div>
+
+        <div class="step" data-step="contact">
+          <p class="question">Where can we reach you?</p>
+          <label class="field"><span>Phone Number</span><input id="phone" inputmode="tel" autocomplete="tel" placeholder="Your phone number"></label>
+          <label class="field"><span>Email Address</span><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+          <p class="error" id="contactError"></p>
+          <div class="actions"><button type="button" class="back" data-back="party">Back</button><button type="button" class="next" data-next="review">Review</button></div>
+        </div>
+
+        <div class="step" data-step="review">
+          <p class="question">Everything look right?</p>
+          <div class="review" id="reviewCard"></div>
+          <div class="actions"><button type="button" class="back" data-back="contact">Edit</button><button type="submit" class="submit">Submit RSVP</button></div>
+        </div>
+
+        <div class="step" data-step="decline">
+          <div class="confirm">
+            <div class="confirm-mark">♡</div>
+            <h3>We’ll miss you.</h3>
+            <p>Thank you for letting us know. 🤍</p>
+            <button type="button" class="back" data-back="attendance" style="padding:0 18px">Change response</button>
+          </div>
+        </div>
+
+        <div class="step" data-step="confirmed">
+          <div class="confirm">
+            <div class="confirm-mark">✓</div>
+            <h3>You’re on the list. ✨</h3>
+            <p>We can’t wait to celebrate with you in Charlotte.</p>
+            <div class="confirm-links">
+              <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217">View Map</a>
+              <button type="button" id="editRsvp">Edit RSVP</button>
             </div>
           </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
 
-          <div class="step" data-step="name">
-            <p class="question">Who should we add to the guest list?</p>
-            <label class="field">
-              <span>Guest name</span>
-              <input id="guestName" autocomplete="name" placeholder="Your full name">
-            </label>
-            <p class="error" id="nameError"></p>
-            <div class="form-actions">
-              <button type="button" class="back" data-back="attendance">Back</button>
-              <button type="button" class="next" data-next="party">Continue</button>
-            </div>
-          </div>
+<footer>
+  <img src="assets/nk-logo.png" alt="">
+  <p>Nithin & Kusuma</p>
+  <span>January 9, 2027 · Charlotte, North Carolina</span>
+  <small>#PremathoNIKU</small>
+</footer>
 
-          <div class="step" data-step="party">
-            <p class="question">Who’s celebrating with you?</p>
-            <div class="counter-row">
-              <div class="counter-card">
-                <span>Adults</span>
-                <div><button type="button" data-count="adults" data-dir="-1">−</button><output id="adults">1</output><button type="button" data-count="adults" data-dir="1">+</button></div>
-              </div>
-              <div class="counter-card">
-                <span>Children</span>
-                <div><button type="button" data-count="children" data-dir="-1">−</button><output id="children">0</output><button type="button" data-count="children" data-dir="1">+</button></div>
-              </div>
-            </div>
-            <p class="party-note">Families, children and +1s are welcome.</p>
-            <div class="form-actions">
-              <button type="button" class="back" data-back="name">Back</button>
-              <button type="button" class="next" data-next="contact">Continue</button>
-            </div>
-          </div>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-          <div class="step" data-step="contact">
-            <p class="question">Where can we reach you?</p>
-            <label class="field"><span>Phone number</span><input id="phone" inputmode="tel" autocomplete="tel" placeholder="Your phone number"></label>
-            <label class="field"><span>Email address</span><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
-            <p class="error" id="contactError"></p>
-            <div class="form-actions">
-              <button type="button" class="back" data-back="party">Back</button>
-              <button type="button" class="next" data-next="review">Review</button>
-            </div>
-          </div>
+  addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('hide'),450));
 
-          <div class="step" data-step="review">
-            <p class="question">Everything look right?</p>
-            <div class="review-card" id="reviewCard"></div>
-            <div class="form-actions">
-              <button type="button" class="back" data-back="contact">Edit</button>
-              <button type="submit" class="submit">Submit RSVP</button>
-            </div>
-          </div>
+  // Ambient starfield
+  const c=document.getElementById('ambient'),x=c.getContext('2d');
+  let W,H,D=Math.min(devicePixelRatio||1,2),stars=[];
+  function resize(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;c.style.width=W+'px';c.style.height=H+'px';x.setTransform(D,0,0,D,0,0);
+    stars=Array.from({length:Math.min(150,Math.floor(W*H/5000))},()=>({x:Math.random()*W,y:Math.random()*H,r:.25+Math.random()*1.1,a:.15+Math.random()*.45,t:Math.random()*6.28}));
+  }
+  function draw(ms){x.clearRect(0,0,W,H);const t=ms/1500;stars.forEach(s=>{const a=reduce?s.a:s.a*(.73+.27*Math.sin(t+s.t));x.beginPath();x.fillStyle=`rgba(255,239,206,${a})`;x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fill()});requestAnimationFrame(draw)}
+  resize();addEventListener('resize',resize);requestAnimationFrame(draw);
 
-          <div class="step" data-step="decline">
-            <div class="confirmation">
-              <div class="confirm-icon">♡</div>
-              <h3 class="display">We’ll miss you.</h3>
-              <p>Thank you for letting us know. 🤍</p>
-              <button type="button" class="text-btn" data-back="attendance">Change response</button>
-            </div>
-          </div>
+  // menu
+  const drawer=document.getElementById('drawer');
+  const open=()=>{drawer.classList.add('open');drawer.setAttribute('aria-hidden','false')};
+  const close=()=>{drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')};
+  document.getElementById('menuBtn').onclick=open;document.getElementById('menuClose').onclick=close;
+  drawer.querySelectorAll('a').forEach(a=>a.onclick=close);
 
-          <div class="step" data-step="confirmed">
-            <div class="confirmation">
-              <div class="confirm-icon">✓</div>
-              <h3 class="display">You’re on the list. ✨</h3>
-              <p>We can’t wait to celebrate with you in Charlotte.</p>
-              <div class="confirm-links">
-                <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217">View Map</a>
-                <button type="button" id="editRsvp">Edit RSVP</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
+  // Smooth cinematic scrolling
+  if(!reduce && window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+    if(window.Lenis){
+      const lenis=new Lenis({duration:1.15,smoothWheel:true});
+      lenis.on('scroll',ScrollTrigger.update);
+      gsap.ticker.add(t=>lenis.raf(t*1000));
+      gsap.ticker.lagSmoothing(0);
+    }
 
-  <footer>
-    <img src="assets/nk-logo.png" alt="">
-    <p>Nithin & Kusuma</p>
-    <span>January 9, 2027 · Charlotte, North Carolina</span>
-    <small>#PremathoNIKU</small>
-  </footer>
+    // opening
+    gsap.fromTo('.entrance-art',{scale:1.01},{scale:1.11,yPercent:-3,ease:'none',scrollTrigger:{trigger:'#entrance',start:'top top',end:'bottom top',scrub:1}});
+    gsap.fromTo('.connection-art',{scale:1.08,opacity:.1},{scale:1,opacity:1,ease:'none',scrollTrigger:{trigger:'#connection',start:'top bottom',end:'35% center',scrub:1}});
+    gsap.to('.connection-art',{scale:1.06,yPercent:-2,ease:'none',scrollTrigger:{trigger:'#connection',start:'35% center',end:'bottom top',scrub:1}});
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="app.js"></script>
+    // Dashboard chapters
+    ['#date','#city','#venue','#dress'].forEach((sel,i)=>{
+      const art=document.querySelector(sel+' .dashboard-art');
+      gsap.fromTo(art,{scale:.84,y:80,rotateX:4},{scale:1,y:0,rotateX:0,ease:'power2.out',scrollTrigger:{trigger:sel,start:'top 82%',end:'38% center',scrub:1}});
+      gsap.to(art,{scale:1.04,y:-26,ease:'none',scrollTrigger:{trigger:sel,start:'45% center',end:'bottom top',scrub:1}});
+    });
+
+    gsap.to('#countdown .count-bg',{scale:1.10,yPercent:3,ease:'none',scrollTrigger:{trigger:'#countdown',start:'top bottom',end:'bottom top',scrub:1}});
+    gsap.to('#countdown .orbit',{rotation:8,ease:'none',scrollTrigger:{trigger:'#countdown',start:'top bottom',end:'bottom top',scrub:1}});
+
+    // Desktop pointer tilt for art cards
+    if(matchMedia('(pointer:fine)').matches){
+      document.querySelectorAll('.dashboard-art').forEach(card=>{
+        card.addEventListener('mousemove',e=>{
+          const r=card.getBoundingClientRect(),rx=((e.clientY-r.top)/r.height-.5)*-5,ry=((e.clientX-r.left)/r.width-.5)*7;
+          gsap.to(card,{rotateX:rx,rotateY:ry,duration:.35,transformPerspective:900});
+        });
+        card.addEventListener('mouseleave',()=>gsap.to(card,{rotateX:0,rotateY:0,duration:.45}));
+      });
+    }
+  }
+
+  // Stardust particles over screen 2
+  const sparkLayer=document.getElementById('sparkLayer');
+  for(let i=0;i<34;i++){
+    const s=document.createElement('i');s.className='spark';
+    s.style.left=(18+Math.random()*66)+'%';s.style.top=(17+Math.random()*45)+'%';sparkLayer.appendChild(s);
+    if(window.gsap && !reduce) gsap.to(s,{opacity:.8,scale:.5+Math.random()*1.5,duration:1.1+Math.random()*1.8,repeat:-1,yoyo:true,delay:Math.random()*2});
+    else s.style.opacity=.45;
+  }
+
+  // Progress rail
+  const chapters=[...document.querySelectorAll('main>section')],dots=[...document.querySelectorAll('.rail i')];
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const n=Number(e.target.dataset.index||0);dots.forEach((d,i)=>d.classList.toggle('active',i===n))}}),{threshold:.52});
+  chapters.forEach(s=>obs.observe(s));
+
+  // Countdown
+  const target=new Date('2027-01-09T19:00:00-05:00').getTime();
+  function tick(){
+    let d=Math.max(0,target-Date.now());
+    const day=Math.floor(d/86400000);d%=86400000;
+    const hr=Math.floor(d/3600000);d%=3600000;
+    const mi=Math.floor(d/60000);const se=Math.floor((d%60000)/1000);
+    days.textContent=String(day).padStart(3,'0');hours.textContent=String(hr).padStart(2,'0');minutes.textContent=String(mi).padStart(2,'0');seconds.textContent=String(se).padStart(2,'0');
+  } tick();setInterval(tick,1000);
+
+  // RSVP
+  const state={adults:1,children:0},steps=[...document.querySelectorAll('.step')],bars=[...document.querySelectorAll('.progress i')];
+  const order={attendance:0,name:1,party:2,contact:3,review:4,decline:4,confirmed:4};
+  function show(name){
+    steps.forEach(s=>s.classList.toggle('active',s.dataset.step===name));
+    bars.forEach((b,i)=>b.classList.toggle('on',i<=order[name]));
+    const active=document.querySelector('.step.active');
+    if(active&&window.gsap&&!reduce) gsap.fromTo(active,{opacity:0,y:15},{opacity:1,y:0,duration:.38,ease:'power2.out'});
+  }
+  document.querySelectorAll('[data-attend]').forEach(b=>b.onclick=()=>show(b.dataset.attend==='yes'?'name':'decline'));
+  document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>show(b.dataset.back));
+  document.querySelectorAll('[data-count]').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.count,min=k==='adults'?1:0;
+    state[k]=Math.max(min,Math.min(20,state[k]+Number(b.dataset.dir)));
+    document.getElementById(k).textContent=state[k];
+  });
+  const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  function validName(){const ok=guestName.value.trim().length>=2;nameError.textContent=ok?'':'Please enter your name.';return ok}
+  function validContact(){const p=/^[0-9+()\-\s]{7,20}$/.test(phone.value.trim()),e=email.checkValidity()&&email.value.trim().length>3;contactError.textContent=(p&&e)?'':'Please enter a valid phone number and email address.';return p&&e}
+  document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{
+    const cur=b.closest('.step').dataset.step;if(cur==='name'&&!validName())return;if(cur==='contact'&&!validContact())return;
+    if(b.dataset.next==='review') reviewCard.innerHTML=`<div><span>Name</span><strong>${esc(guestName.value.trim())}</strong></div><div><span>Guests</span><strong>${state.adults} adult${state.adults===1?'':'s'} · ${state.children} child${state.children===1?'':'ren'}</strong></div><div><span>Phone</span><strong>${esc(phone.value.trim())}</strong></div><div><span>Email</span><strong>${esc(email.value.trim())}</strong></div>`;
+    show(b.dataset.next);
+  });
+  rsvpForm.onsubmit=e=>{e.preventDefault();localStorage.setItem('premathoniku-rsvp',JSON.stringify({name:guestName.value.trim(),adults:state.adults,children:state.children,phone:phone.value.trim(),email:email.value.trim(),savedAt:new Date().toISOString()}));show('confirmed')};
+  editRsvp.onclick=()=>show('name');
+})();
+</script>
 </body>
 </html>
