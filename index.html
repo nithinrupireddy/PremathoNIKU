@@ -1,151 +1,310 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="robots" content="noindex,nofollow" />
-<meta name="theme-color" content="#060914" />
-<title>Nithin & Kusuma — Wedding Reception</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500;600&family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#06101d">
+  <meta name="robots" content="noindex,nofollow">
+  <meta property="og:title" content="Nithin & Kusuma — Wedding Reception">
+  <meta property="og:description" content="Join us in Charlotte on January 9, 2027.">
+  <meta property="og:image" content="assets/og-preview.jpg">
+  <title>Nithin & Kusuma — Wedding Reception</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500;600&family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<canvas id="sky" aria-hidden="true"></canvas>
-<div class="starline-wrap" aria-hidden="true">
-  <svg id="starline" viewBox="0 0 100 1000" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#fff3ca"/><stop offset=".48" stop-color="#e9c98e"/><stop offset="1" stop-color="#c77a96"/>
-      </linearGradient>
-      <filter id="glow"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <path id="starPath" pathLength="1" d="M50,44 C30,92 68,144 48,198 S22,286 68,346 S77,433 43,505 S24,597 65,661 S79,747 47,811 S37,917 56,985"/>
-  </svg>
-</div>
-
-<section class="scene dark hero" id="entrance">
-  <div class="terrace-frame">
-    <div class="column left"></div><div class="column right"></div><div class="arch-top"></div>
-    <i class="lantern la"></i><i class="lantern lb"></i><i class="lantern lc"></i>
-    <i class="floral ftl"></i><i class="floral ftr"></i>
+  <div id="preloader" aria-hidden="true">
+    <img src="assets/nk-logo.png" alt="">
+    <span>PremathoNIKU</span>
   </div>
-  <div class="scene-inner center reveal">
-    <img class="logo" src="logo.png" alt="N and K holding hands monogram" />
-    <div class="names">Nithin & Kusuma</div>
-    <div class="soft-rule"></div>
-    <h1 class="display hero-title">A celebration<br>awaits</h1>
-    <p class="script">Different places. Same forever.</p>
-    <div class="swipe"><span class="chev">⌄</span><span>Swipe to begin</span></div>
-  </div>
-</section>
 
-<section class="scene dark" id="connection">
-  <div class="scene-inner connection-grid">
-    <div class="reveal">
-      <p class="eyebrow">The connection</p>
-      <h2 class="display">Two paths.<br>One line.<br>Always us.</h2>
-      <p class="lead">Two constellations drift toward one another. When their hands meet, a single luminous line begins guiding the rest of the night.</p>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="mini-brand" href="#entrance" aria-label="Back to top">
+      <img src="assets/nk-logo.png" alt="">
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteMenu">
+      <span></span><span></span>
+      <em>Menu</em>
+    </button>
+  </header>
+
+  <nav class="site-menu" id="siteMenu" aria-hidden="true">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
+    <div class="menu-inner">
+      <p class="eyebrow">Nithin & Kusuma</p>
+      <a href="#entrance"><b>01</b> Entrance</a>
+      <a href="#connection"><b>02</b> Our Story</a>
+      <a href="#date"><b>03</b> The Date</a>
+      <a href="#city"><b>04</b> Charlotte</a>
+      <a href="#venue"><b>05</b> The Venue</a>
+      <a href="#dress"><b>06</b> Dress Code</a>
+      <a href="#countdown"><b>07</b> Countdown</a>
+      <a href="#rsvp"><b>08</b> RSVP</a>
     </div>
-    <div class="constellation-card reveal">
-      <svg class="constellation-svg" viewBox="0 0 560 350" role="img" aria-label="N and K constellation">
-        <g class="n"><line x1="78" y1="278" x2="118" y2="60"/><line x1="118" y1="60" x2="206" y2="278"/><line x1="206" y1="278" x2="176" y2="82"/></g>
-        <g class="k"><line x1="330" y1="58" x2="300" y2="282"/><line x1="315" y1="158" x2="474" y2="60"/><line x1="315" y1="158" x2="480" y2="282"/></g>
-        <line x1="206" y1="170" x2="304" y2="162"/>
-        <g><circle cx="78" cy="278" r="5"/><circle cx="118" cy="60" r="6"/><circle cx="206" cy="278" r="5"/><circle cx="176" cy="82" r="5"/><circle cx="330" cy="58" r="6"/><circle cx="300" cy="282" r="5"/><circle cx="474" cy="60" r="5"/><circle cx="480" cy="282" r="6"/><circle cx="206" cy="170" r="7"/><circle cx="304" cy="162" r="7"/></g>
-      </svg>
-      <span class="spark"></span>
-    </div>
-  </div>
-</section>
+  </nav>
 
-<section class="scene dark" id="date">
-  <div class="moon" aria-hidden="true"></div>
-  <div class="scene-inner date-stage reveal">
-    <p class="eyebrow">Our wedding reception</p>
-    <div class="date-num">09</div>
-    <h2 class="display date-month">January 2027</h2>
-    <div class="date-meta"><span>Saturday</span><span>7:00 PM</span><span>Dinner follows</span></div>
-  </div>
-</section>
+  <aside class="progress-rail" aria-hidden="true">
+    <span class="active">01</span><span>02</span><span>03</span><span>04</span>
+    <span>05</span><span>06</span><span>07</span><span>08</span>
+  </aside>
 
-<section class="scene dark" id="city">
-  <div class="scene-inner city-wrap">
-    <div class="city-copy reveal">
-      <p class="eyebrow">Our city</p>
-      <h2 class="display">Charlotte</h2>
-      <p class="lead">North Carolina</p>
-      <p class="script">Same city. Brighter together.</p>
-    </div>
-    <div class="reveal">
-      <svg class="skyline" viewBox="0 0 760 330" role="img" aria-label="Stylized Charlotte skyline at night">
-        <path class="b" d="M0 290H760V330H0z"/><rect class="b" x="28" y="210" width="58" height="80"/><rect class="b" x="102" y="164" width="72" height="126"/><rect class="b" x="190" y="118" width="54" height="172"/><rect class="b" x="264" y="72" width="80" height="218"/><path class="b" d="M264 72 L304 20 L344 72Z"/><rect class="b" x="364" y="148" width="58" height="142"/><rect class="b" x="442" y="96" width="72" height="194"/><path class="b" d="M442 96 L478 56 L514 96Z"/><rect class="b" x="536" y="182" width="52" height="108"/><rect class="b" x="607" y="132" width="82" height="158"/>
-        <g class="w"><circle cx="56" cy="232" r="2"/><circle cx="132" cy="190" r="2"/><circle cx="218" cy="148" r="2"/><circle cx="304" cy="102" r="2"/><circle cx="393" cy="176" r="2"/><circle cx="478" cy="128" r="2"/><circle cx="650" cy="164" r="2"/></g>
-      </svg>
-      <div class="reflection"></div>
-    </div>
-  </div>
-</section>
+  <main>
+    <!-- 01: exact approved artwork -->
+    <section class="poster-section" id="entrance" data-index="0">
+      <div class="poster-blur" style="background-image:url('assets/hero.webp')"></div>
+      <img class="poster-art" src="assets/hero.webp"
+           alt="Nithin and Kusuma wedding reception invitation under a constellation-filled night sky"
+           fetchpriority="high">
+      <a href="#connection" class="scroll-hit" aria-label="Continue to our story"></a>
+    </section>
 
-<section class="scene dark" id="venue">
-  <div class="scene-inner venue-shell">
-    <div class="venue-art reveal"><div class="door"></div></div>
-    <div class="venue-card reveal">
-      <p class="eyebrow">The venue</p>
-      <h3 class="display">Utsav Event Spaces</h3>
-      <div class="info-lines">
-        <span>5533 Westpark Dr, Charlotte, NC 28217</span>
-        <span>Saturday · January 09, 2027</span>
-        <span>Reception begins at 7:00 PM</span>
-        <span>Dinner follows</span>
+    <!-- 02: exact approved connection artwork -->
+    <section class="poster-section" id="connection" data-index="1">
+      <div class="poster-blur" style="background-image:url('assets/connection.webp')"></div>
+      <img class="poster-art" src="assets/connection.webp"
+           alt="Under the Same Sky — Somehow, our paths found their way to each other.">
+    </section>
+
+    <!-- 03 -->
+    <section class="scene date-scene" id="date" data-index="2">
+      <div class="scene-bg image-bg" style="background-image:url('assets/date-bg.webp')"></div>
+      <div class="veil"></div>
+      <div class="floating-constellations" aria-hidden="true">
+        <svg viewBox="0 0 900 700">
+          <g class="const">
+            <path d="M90 165 150 115 220 170 290 125 362 188"/>
+            <path d="M565 140 620 105 680 158 743 120 815 174"/>
+            <circle cx="90" cy="165" r="5"/><circle cx="150" cy="115" r="4"/><circle cx="220" cy="170" r="6"/>
+            <circle cx="290" cy="125" r="4"/><circle cx="362" cy="188" r="5"/>
+            <circle cx="565" cy="140" r="4"/><circle cx="620" cy="105" r="6"/><circle cx="680" cy="158" r="4"/>
+            <circle cx="743" cy="120" r="5"/><circle cx="815" cy="174" r="4"/>
+          </g>
+        </svg>
       </div>
-      <a class="pill" href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217" target="_blank" rel="noopener">View on Google Maps ↗</a>
-    </div>
-  </div>
-</section>
 
-<section class="scene cream" id="dress">
-  <div class="scene-inner dress-grid">
-    <div class="reveal">
-      <p class="eyebrow">Dress code</p>
-      <h2 class="display">Festive attire</h2>
-      <p class="lead">Come dressed for an evening of celebration. Indian or Western festive looks are equally welcome.</p>
-      <p class="dress-note">No required color palette. Choose something elevated, joyful, and comfortable enough to celebrate all night.</p>
-    </div>
-    <div class="fashion-board reveal">
-      <div class="look gown"><strong>Festive</strong><span>Sarees, lehengas, evening dresses</span></div>
-      <div class="look suit"><strong>Celebratory</strong><span>Suits, bandhgalas, blazers</span></div>
-    </div>
-  </div>
-</section>
+      <div class="scene-content center date-content reveal">
+        <p class="eyebrow">Our Wedding Reception</p>
+        <div class="ornament"></div>
+        <p class="date-day">Saturday</p>
+        <h2 class="display date-title"><span>January</span><strong>9</strong><span>2027</span></h2>
+        <div class="date-time">7:00 PM</div>
+        <div class="ornament small"></div>
+        <p class="dinner">Dinner follows</p>
+      </div>
+    </section>
 
-<section class="scene dark" id="countdown">
-  <div class="scene-inner center reveal">
-    <p class="eyebrow">Counting down</p>
-    <h2 class="display">To our celebration</h2>
-    <div class="orbit"><div><div class="daynum" id="days">000</div><div class="eyebrow">Days</div><div class="clock"><div><b id="hours">00</b><span>Hours</span></div><div><b id="mins">00</b><span>Minutes</span></div><div><b id="secs">00</b><span>Seconds</span></div></div></div></div>
-  </div>
-</section>
+    <!-- 04 -->
+    <section class="scene city-scene" id="city" data-index="3">
+      <div class="scene-bg image-bg city-bg" style="background-image:url('assets/charlotte.webp')"></div>
+      <div class="city-overlay"></div>
+      <div class="scene-content city-copy reveal">
+        <p class="eyebrow">The Queen City</p>
+        <h2 class="display city-title">Charlotte</h2>
+        <p class="city-state">North Carolina</p>
+        <p class="script city-line">A special evening in the Queen City.</p>
+      </div>
+      <div class="city-light-line" aria-hidden="true"></div>
+    </section>
 
-<section class="scene cream" id="rsvp">
-  <div class="scene-inner rsvp-container reveal">
-    <div class="center"><p class="eyebrow">RSVP</p><h2 class="display">Will you be part<br>of our constellation?</h2></div>
-    <div class="rsvp-progress" id="progress"><i class="on"></i><i></i><i></i><i></i><i></i></div>
-    <form id="rsvpForm" novalidate>
-      <section class="step active" data-step="attend"><p class="question">Will you be joining us?</p><div class="choice-stack"><button type="button" class="btn" data-attend="yes">Yes, I'll be there</button><button type="button" class="btn alt" data-attend="no">No, I can't make it</button></div></section>
-      <section class="step" data-step="name"><p class="question">First, who are we celebrating with?</p><div class="field"><label for="name">Your name</label><input id="name" autocomplete="name"></div><div class="err" id="nameErr"></div><div class="step-actions"><button type="button" class="btn alt" data-back="attend">Back</button><button type="button" class="btn" data-next="count">Continue →</button></div></section>
-      <section class="step" data-step="count"><p class="question">How many of you are joining us?</p><div class="counters"><div class="counter"><b>Adults</b><div class="counter-controls"><button type="button" data-counter="adults" data-dir="-1">−</button><output id="adults">1</output><button type="button" data-counter="adults" data-dir="1">+</button></div></div><div class="counter"><b>Children</b><div class="counter-controls"><button type="button" data-counter="children" data-dir="-1">−</button><output id="children">0</output><button type="button" data-counter="children" data-dir="1">+</button></div></div></div><div class="step-actions"><button type="button" class="btn alt" data-back="name">Back</button><button type="button" class="btn" data-next="phone">Continue →</button></div></section>
-      <section class="step" data-step="phone"><p class="question">Where can we reach you?</p><div class="field"><label for="phone">Phone number</label><input id="phone" inputmode="tel" autocomplete="tel"></div><div class="err" id="phoneErr"></div><div class="step-actions"><button type="button" class="btn alt" data-back="count">Back</button><button type="button" class="btn" data-next="email">Continue →</button></div></section>
-      <section class="step" data-step="email"><p class="question">And your email?</p><div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="email"></div><div class="err" id="emailErr"></div><div class="step-actions"><button type="button" class="btn alt" data-back="phone">Back</button><button type="button" class="btn" data-next="summary">Review RSVP →</button></div></section>
-      <section class="step" data-step="summary"><p class="question">Everything look right?</p><div class="summary" id="summary"></div><div class="step-actions"><button type="button" class="btn alt" data-back="email">Edit</button><button type="submit" class="btn">Confirm RSVP →</button></div><p class="small-note">Prototype only: this does not yet write to Google Sheets.</p></section>
-      <section class="step" data-step="decline"><div class="confirm"><h2 class="display">We'll miss you 🤍</h2><p>Thank you for letting us know.</p><button type="button" class="btn alt" data-back="attend">Change response</button></div></section>
-      <section class="step" data-step="confirmed"><div class="confirm"><img class="logo small" src="logo.png" alt=""><p class="eyebrow">RSVP confirmed</p><h2 class="display">You're on the list ✨</h2><p>We can't wait to celebrate with you in Charlotte.</p><div class="confirm-actions"><a class="pill dark-pill" href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217" target="_blank" rel="noopener">View map</a><button type="button" class="btn" id="editRsvp">Edit RSVP</button></div></div></section>
-    </form>
-  </div>
-</section>
+    <!-- 05 -->
+    <section class="scene venue-scene" id="venue" data-index="4">
+      <div class="scene-bg image-bg" style="background-image:url('assets/venue.webp')"></div>
+      <div class="venue-overlay"></div>
+      <div class="scene-content venue-card reveal">
+        <p class="eyebrow">The Venue</p>
+        <div class="ornament"></div>
+        <h2 class="display venue-name">Utsav<br>Event Spaces</h2>
+        <p class="address">5533 Westpark Dr<br>Charlotte, NC 28217</p>
+        <a class="gold-btn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217">
+          <span>View on Google Maps</span><b>↗</b>
+        </a>
+        <div class="event-mini">
+          <span>Saturday · January 9, 2027</span>
+          <span>7:00 PM · Dinner follows</span>
+        </div>
+      </div>
+    </section>
 
-<footer class="footer"><img class="logo small" src="logo.png" alt=""><p>Nithin & Kusuma · January 09, 2027 · Charlotte</p></footer>
-<script src="script.js"></script>
+    <!-- 06 -->
+    <section class="scene dress-scene" id="dress" data-index="5">
+      <div class="dress-sky"></div>
+      <div class="scene-content dress-content reveal">
+        <p class="eyebrow">Dress Code</p>
+        <div class="ornament"></div>
+        <h2 class="display">Festive Attire</h2>
+        <p class="dress-intro">Come dressed to celebrate in your elegant festive best.</p>
+
+        <div class="outfit-stage" aria-label="Indian or Western festive attire inspiration">
+          <article class="outfit-card indian">
+            <div class="gold-arch"></div>
+            <div class="figure figure-indian" aria-hidden="true">
+              <span class="head"></span><span class="body"></span><span class="coat"></span>
+            </div>
+            <h3>Indian Festive</h3>
+            <p>Sarees · Lehengas · Kurtas · Bandhgalas</p>
+          </article>
+
+          <article class="outfit-card western">
+            <div class="gold-arch"></div>
+            <div class="figure figure-western" aria-hidden="true">
+              <span class="head"></span><span class="body"></span><span class="gown"></span>
+            </div>
+            <h3>Western Festive</h3>
+            <p>Suits · Blazers · Cocktail & Evening Looks</p>
+          </article>
+        </div>
+
+        <p class="dress-note">No required color palette — simply come ready to celebrate.</p>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="scene count-scene" id="countdown" data-index="6">
+      <div class="scene-bg image-bg" style="background-image:url('assets/date-bg.webp')"></div>
+      <div class="veil strong"></div>
+      <div class="scene-content center reveal">
+        <p class="eyebrow">Countdown to</p>
+        <h2 class="display count-heading">Our Celebration</h2>
+
+        <div class="celestial-clock">
+          <div class="orbit o1"></div>
+          <div class="orbit o2"></div>
+          <div class="moon-mark">☾</div>
+          <div class="count-main">
+            <strong id="days">000</strong>
+            <span>Days</span>
+          </div>
+          <div class="count-small">
+            <div><b id="hours">00</b><span>Hours</span></div>
+            <div><b id="minutes">00</b><span>Minutes</span></div>
+            <div><b id="seconds">00</b><span>Seconds</span></div>
+          </div>
+        </div>
+
+        <p class="count-date">January 9, 2027 · 7:00 PM · Charlotte</p>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section class="scene rsvp-scene" id="rsvp" data-index="7">
+      <div class="rsvp-stars"></div>
+      <div class="scene-content rsvp-wrap reveal">
+        <div class="rsvp-heading center">
+          <p class="eyebrow">RSVP</p>
+          <h2 class="display">We would love to<br>celebrate with you.</h2>
+        </div>
+
+        <div class="rsvp-progress" aria-hidden="true">
+          <i class="on"></i><i></i><i></i><i></i><i></i>
+        </div>
+
+        <form id="rsvpForm" novalidate>
+          <div class="step active" data-step="attendance">
+            <p class="question">Will you be attending?</p>
+            <div class="choice-stack">
+              <button type="button" class="choice yes" data-attend="yes">
+                <span>✓</span><b>Yes, I’ll be there</b>
+              </button>
+              <button type="button" class="choice no" data-attend="no">
+                <span>×</span><b>I’m not attending</b>
+              </button>
+            </div>
+          </div>
+
+          <div class="step" data-step="name">
+            <p class="question">Who should we add to the guest list?</p>
+            <label class="field">
+              <span>Guest name</span>
+              <input id="guestName" autocomplete="name" placeholder="Your full name">
+            </label>
+            <p class="error" id="nameError"></p>
+            <div class="form-actions">
+              <button type="button" class="back" data-back="attendance">Back</button>
+              <button type="button" class="next" data-next="party">Continue</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="party">
+            <p class="question">Who’s celebrating with you?</p>
+            <div class="counter-row">
+              <div class="counter-card">
+                <span>Adults</span>
+                <div><button type="button" data-count="adults" data-dir="-1">−</button><output id="adults">1</output><button type="button" data-count="adults" data-dir="1">+</button></div>
+              </div>
+              <div class="counter-card">
+                <span>Children</span>
+                <div><button type="button" data-count="children" data-dir="-1">−</button><output id="children">0</output><button type="button" data-count="children" data-dir="1">+</button></div>
+              </div>
+            </div>
+            <p class="party-note">Families, children and +1s are welcome.</p>
+            <div class="form-actions">
+              <button type="button" class="back" data-back="name">Back</button>
+              <button type="button" class="next" data-next="contact">Continue</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="contact">
+            <p class="question">Where can we reach you?</p>
+            <label class="field"><span>Phone number</span><input id="phone" inputmode="tel" autocomplete="tel" placeholder="Your phone number"></label>
+            <label class="field"><span>Email address</span><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+            <p class="error" id="contactError"></p>
+            <div class="form-actions">
+              <button type="button" class="back" data-back="party">Back</button>
+              <button type="button" class="next" data-next="review">Review</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="review">
+            <p class="question">Everything look right?</p>
+            <div class="review-card" id="reviewCard"></div>
+            <div class="form-actions">
+              <button type="button" class="back" data-back="contact">Edit</button>
+              <button type="submit" class="submit">Submit RSVP</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="decline">
+            <div class="confirmation">
+              <div class="confirm-icon">♡</div>
+              <h3 class="display">We’ll miss you.</h3>
+              <p>Thank you for letting us know. 🤍</p>
+              <button type="button" class="text-btn" data-back="attendance">Change response</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="confirmed">
+            <div class="confirmation">
+              <div class="confirm-icon">✓</div>
+              <h3 class="display">You’re on the list. ✨</h3>
+              <p>We can’t wait to celebrate with you in Charlotte.</p>
+              <div class="confirm-links">
+                <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=5533%20Westpark%20Dr%20Charlotte%20NC%2028217">View Map</a>
+                <button type="button" id="editRsvp">Edit RSVP</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/nk-logo.png" alt="">
+    <p>Nithin & Kusuma</p>
+    <span>January 9, 2027 · Charlotte, North Carolina</span>
+    <small>#PremathoNIKU</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
